@@ -41,235 +41,8 @@
     </script>
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>😎</text></svg" />
+    <link rel="stylesheet" href="style.css" />
 
-    <style>
-        /* Dark-mode video background */
-        video.bg-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(60%) contrast(80%);
-            z-index: -2;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        body.dark-mode video.bg-video {
-            opacity: 1;
-        }
-
-        @font-face {
-            font-family: 'Arizona Plus Variable';
-            src: url('/ABCArizonaPlusVariable-Trial.woff2') format('woff2');
-            font-weight: 100 900;
-            font-style: oblique 0deg 20deg;
-        }
-
-        :root {
-            --bg-color-light: #FEFAE0;
-            --text-color-light: #283618;
-            --link-color-light: #606C38;
-            --link-hover-light: #BC6C25;
-            --bg-color-dark: #121212;
-            --text-color-dark: #EAEAEA;
-            --link-color-dark: #BB86FC;
-            --link-hover-dark: #03DAC6;
-        }
-
-        body {
-            font-family: 'Arizona Plus Variable', sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: var(--bg-color-light);
-            color: var(--text-color-light);
-            text-align: center;
-            transition: background-color 0.3s, color 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        body.dark-mode {
-            background-color: var(--bg-color-dark);
-            color: var(--text-color-dark);
-        }
-
-        h1 {
-            font-size: clamp(3rem, 10vw, 8rem);
-            font-variation-settings: 'wght' 200, 'slnt' -10, 'SRFF' 0;
-            animation: animateText 5s infinite alternate;
-            margin: 0;
-            color: var(--text-color-light);
-        }
-
-        body.dark-mode h1 {
-            color: white;
-        }
-
-        h2 {
-            font-size: clamp(1.2rem, 5vw, 2rem);
-            font-variation-settings: 'wght' 200, 'slnt' -10, 'SRFF' 0;
-            margin: 10px 0 0 0;
-            color: var(--link-color-light);
-        }
-
-        .greeting {
-            position: fixed;
-            top: 1.25em;
-            left: 1.5em;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: rgba(96, 108, 56, 0.85);
-        }
-
-        body.dark-mode .greeting {
-            color: white;
-        }
-
-        footer {
-            width: 100%;
-            padding: 0 1.5em 1em 1.5em;
-            /* background-color: var(--bg-color-light); */
-            color: var(--text-color-light);
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-sizing: border-box;
-            transition: background-color 0.3s, color 0.3s;
-            flex-wrap: nowrap;
-        }
-
-        body.dark-mode footer {
-            /* background-color: var(--bg-color-dark); */
-            background-color: transparent;
-            color: var(--text-color-dark);
-        }
-
-        .footer-section {
-            margin: 0;
-            text-align: left;
-        }
-
-        #current-time {
-            text-align: right;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        a {
-            color: var(--link-color-light);
-            text-decoration: none;
-            position: relative;
-            padding: 8px 16px;
-            display: inline-block;
-            transition: color 0.3s;
-        }
-
-        body.dark-mode a {
-            color: var(--link-color-dark);
-        }
-
-        a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -10px;
-            width: 0;
-            height: 4px;
-            background-color: var(--link-hover-light);
-            transition: width 0.3s ease, height 0.3s ease, background-color 0.3s;
-        }
-
-        body.dark-mode a::after {
-            background-color: var(--link-hover-dark);
-        }
-
-        a:hover::after,
-        a:focus::after,
-        a:active::after {
-            width: 100%;
-            height: 2px;
-        }
-
-        a:focus {
-            outline: 2px solid var(--link-hover-light);
-            outline-offset: 4px;
-        }
-
-        body.dark-mode a:focus {
-            outline: 2px solid var(--link-hover-dark);
-        }
-
-        a:active {
-            color: var(--text-color-light);
-        }
-
-        body.dark-mode a:active {
-            color: var(--text-color-dark);
-        }
-
-        .theme-toggle {
-            position: fixed;
-            top: 1.5em;
-            right: 1.5em;
-            width: 2.5em;
-            height: 2.5em;
-            aspect-ratio: 1;
-            border-radius: 50%;
-            background-color: var(--text-color-light);
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .theme-toggle:hover {
-            background-color: var(--link-hover-light);
-        }
-
-        body.dark-mode .theme-toggle {
-            background-color: var(--text-color-dark);
-        }
-
-        img {
-            max-width: 50px;
-            height: auto;
-        }
-
-        #weather {
-            display: flex;
-            align-items: center;
-            gap: 0.5em;
-        }
-
-        @keyframes animateText {
-            0% { font-variation-settings: 'wght' 200, 'slnt' -10, 'SRFF' 0; }
-            33% { font-variation-settings: 'wght' 400, 'slnt' 0, 'SRFF' 0.5; }
-            66% { font-variation-settings: 'wght' 700, 'slnt' 10, 'SRFF' 1; }
-            100%{ font-variation-settings: 'wght' 900, 'slnt' 20, 'SRFF' 1; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            h1 { animation: none !important; }
-        }
-
-        @media (max-width: 600px) {
-            footer { flex-direction: column; align-items: center; }
-            #current-time, #weather { width: 100%; text-align: center; padding: 5px; font-variation-settings: 'wght' 400, 'slnt' 0, 'SRFF' 0.5; }
-        }
-    </style>
 </head>
 
 <body>
@@ -278,69 +51,22 @@
         <source src="/dark.mp4" type="video/mp4">
     </video>
 
-    <div class="greeting" id="greeting"></div>
+<header>
+    <span id="greeting" class="greeting"></span>
     <button class="theme-toggle" aria-label="Toggle theme" aria-pressed="false" aria-live="polite" type="button"
         onclick="toggleTheme()"></button>
+</header>
+<main>
     <h1>Jon Osmond</h1>
     <h2><a href="https://www.linkedin.com/in/josmond/">Building websites so the internet has somewhere to go</a></h2>
 
+</main>
     <footer>
-        <div class="footer-section" id="weather"></div>
-        <div class="footer-section" id="current-time"></div>
+        <section id="weather" class="footer-section"></section>
+        <section id="current-time" class="footer-section"></section>
     </footer>
 
-    <script>
-        const toggleTheme = () => {
-            const body = document.body;
-            body.classList.toggle('dark-mode');
-            const themeToggle = document.querySelector('.theme-toggle');
-            const isDarkMode = body.classList.contains('dark-mode');
-            themeToggle.setAttribute('aria-pressed', isDarkMode.toString());
-            themeToggle.setAttribute('aria-label', isDarkMode ? "Switch to light mode" : "Switch to dark mode");
-        };
-
-        function updateGreeting() {
-            const greetingElement = document.getElementById('greeting');
-            const hour = new Date().getHours();
-            let greeting = 'Hello';
-            if (hour < 12) greeting = 'Good Morning';
-            else if (hour < 18) greeting = 'Good Afternoon';
-            else greeting = 'Good Evening';
-            greetingElement.textContent = `${greeting}`;
-        }
-
-        async function fetchWeather() {
-            const weatherElement = document.getElementById('weather');
-            const apiKey = 'b81a0e4e8c6cb6b7ba06b738bc24068b';
-            const city = 'Minneapolis';
-            const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&units=imperial&appid=${apiKey}`;
-            try {
-                const res = await fetch(url);
-                if (!res.ok) throw new Error(res.status);
-                const data = await res.json();
-                const temp = data.main.temp;
-                const desc = data.weather[0].description;
-                const icon = data.weather[0].icon;
-                weatherElement.innerHTML = `
-                    <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="${desc}" title="${desc}">
-                    <span>${city}: ${temp.toFixed(1)}°F, ${desc}</span>
-                `;
-            } catch {
-                weatherElement.textContent = 'Unable to retrieve weather data.';
-            }
-        }
-
-        function updateTime() {
-            const timeElement = document.getElementById('current-time');
-            timeElement.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
-        }
-
-        updateGreeting();
-        updateTime();
-        setInterval(updateTime, 1000);
-        fetchWeather();
-        setInterval(fetchWeather, 600000);
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
