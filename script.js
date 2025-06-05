@@ -19,9 +19,8 @@ function updateGreeting() {
 
 async function fetchWeather() {
     const weatherElement = document.getElementById('weather');
-    const apiKey = 'b81a0e4e8c6cb6b7ba06b738bc24068b';
     const city = 'Minneapolis';
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&units=imperial&appid=${apiKey}`;
+    const url = `/api/weather?city=${encodeURIComponent(city)}`;
     try {
         const res = await fetch(url);
         if (!res.ok) throw new Error(res.status);
