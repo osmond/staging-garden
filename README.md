@@ -12,17 +12,24 @@ This repository contains the source files for a simple personal homepage. The pa
 
 ## Running locally
 
-No build step is required. Any static file server will work. For quick testing you can run:
+Install the dependencies and start the included Express server:
 
 ```bash
-npx http-server .
+npm install
+npm start
 ```
 
-Then open [http://localhost:8080](http://localhost:8080) in your browser. Alternatively, you can simply open `index.html` directly if you do not need the weather widget (which requires an internet connection).
+The server serves the static files and exposes an `/api/weather` endpoint used by the weather widget. Open [http://localhost:3000](http://localhost:3000) in your browser once the server is running.
 
 ## Customization
 
-The weather widget fetches data for **Minneapolis** using an API key included inline in `index.html`. If you plan to deploy your own copy you should supply your own key and consider moving the request to a backend service.
+Provide your own OpenWeather API key by creating a `.env` file at the project root:
+
+```env
+OPENWEATHER_API_KEY=your_key_here
+```
+
+You can change the default city inside `script.js` or pass a `city` query parameter to the endpoint.
 
 ## License
 

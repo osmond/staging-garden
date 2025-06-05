@@ -17,7 +17,7 @@
 
         @font-face {
             font-family: 'Arizona Plus Variable';
-            src: url('/ABCArizonaPlusVariable-Trial.woff2') format('woff2');
+            src: url('ABCArizonaPlusVariable-Trial.woff2') format('woff2');
             font-weight: 100 900;
             font-style: oblique 0deg 20deg;
         }
