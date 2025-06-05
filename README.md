@@ -26,4 +26,4 @@ The weather widget fetches data for **Minneapolis** using an API key included in
 
 ## License
 
-This project does not currently include an explicit license. All fonts and images are provided for demonstration purposes.
+This project is licensed under the [MIT License](LICENSE). All fonts and images are provided for demonstration purposes.
