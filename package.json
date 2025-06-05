@@ -1,0 +1,18 @@
+{
+  "name": "staging-garden",
+  "version": "1.0.0",
+  "description": "This repository contains the source files for a simple personal homepage. The page is entirely static and relies only on HTML, CSS and a bit of JavaScript.",
+  "main": "script.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
+  }
+}
