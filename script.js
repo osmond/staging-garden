@@ -5,7 +5,33 @@ const toggleTheme = () => {
     const isDarkMode = body.classList.contains('dark-mode');
     themeToggle.setAttribute('aria-pressed', isDarkMode.toString());
     themeToggle.setAttribute('aria-label', isDarkMode ? "Switch to light mode" : "Switch to dark mode");
+    const newTheme = isDarkMode ? 'dark' : 'light';
+    try {
+        localStorage.setItem('theme', newTheme);
+    } catch (e) {
+        // Ignore private browsing errors
+    }
 };
+
+function initTheme() {
+    const storedTheme = (() => {
+        try {
+            return localStorage.getItem('theme');
+        } catch (e) {
+            return null;
+        }
+    })();
+    const body = document.body;
+    const themeToggle = document.querySelector('.theme-toggle');
+    if (storedTheme === 'dark') {
+        body.classList.add('dark-mode');
+        themeToggle.setAttribute('aria-pressed', 'true');
+        themeToggle.setAttribute('aria-label', 'Switch to light mode');
+    } else {
+        themeToggle.setAttribute('aria-pressed', 'false');
+        themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+    }
+}
 
 function updateGreeting() {
     const greetingElement = document.getElementById('greeting');
@@ -43,6 +69,7 @@ function updateTime() {
     timeElement.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
 }
 
+initTheme();
 updateGreeting();
 updateTime();
 setInterval(updateTime, 1000);
